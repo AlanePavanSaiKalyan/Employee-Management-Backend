@@ -1,11 +1,13 @@
 package com.pavan.EmployeeCrud.service;
 
+import com.pavan.EmployeeCrud.dto.EmployeeRequest;
+import com.pavan.EmployeeCrud.dto.EmployeeResponse;
 import com.pavan.EmployeeCrud.entity.Employee;
 
 import java.util.List;
 
 public interface EmployeeService {
-    Employee insertEmployee(Employee employee);
+    EmployeeResponse insertEmployee(EmployeeRequest employee);
     List<Employee> getAllEmployees();
 
     Employee getEmployee(Integer id);

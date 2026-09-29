@@ -1,7 +1,10 @@
 package com.pavan.EmployeeCrud.controller;
 
+import com.pavan.EmployeeCrud.dto.EmployeeRequest;
+import com.pavan.EmployeeCrud.dto.EmployeeResponse;
 import com.pavan.EmployeeCrud.entity.Employee;
 import com.pavan.EmployeeCrud.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,8 +20,8 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public Employee createEmployee(@RequestBody Employee employee){
-        return service.insertEmployee(employee);
+    public EmployeeResponse createEmployee( @Valid @RequestBody EmployeeRequest request){
+        return service.insertEmployee(request);
     }
 
     @GetMapping("/{id}")

@@ -1,5 +1,7 @@
 package com.pavan.EmployeeCrud.service;
 
+import com.pavan.EmployeeCrud.dto.EmployeeRequest;
+import com.pavan.EmployeeCrud.dto.EmployeeResponse;
 import com.pavan.EmployeeCrud.entity.Employee;
 import com.pavan.EmployeeCrud.repository.EmployeeRepo;
 import org.springframework.stereotype.Service;
@@ -13,8 +15,15 @@ public class EmployeeServiceImplementation implements EmployeeService {
         this.employeeRepo = employeeRepo;
     }
     @Override
-    public Employee insertEmployee(Employee employee) {
-        return employeeRepo.save(employee);
+    public EmployeeResponse insertEmployee(EmployeeRequest employee) {
+
+        Employee emp = new Employee();
+        emp.setName(employee.getName());
+        emp.setEmail(employee.getEmail());
+        emp.setDepartment(employee.getDepartment());
+        emp.setSalary(employee.getSalary());
+        Employee response = employeeRepo.save(emp);
+        return new EmployeeResponse(response.getId(),response.getName(),response.getEmail(),response.getDepartment(),response.getSalary());
     }
 
     @Override
