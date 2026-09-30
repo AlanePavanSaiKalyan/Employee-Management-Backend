@@ -1,8 +1,6 @@
 package com.pavan.EmployeeCrud.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +18,8 @@ public class EmployeeRequest {
     private String email;
     @NotBlank(message = "Department is required")
     private String department;
-    @NotBlank(message = "Salary is required")
+    @NotNull(message = "Salary is required")
+    @DecimalMin(value = "0.0",inclusive = false,message = "Salary must be greater than 0")
     @Positive(message = "Salary should be greater than 0")
     private BigDecimal salary;
 }

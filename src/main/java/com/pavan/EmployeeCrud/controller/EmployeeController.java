@@ -5,6 +5,8 @@ import com.pavan.EmployeeCrud.dto.EmployeeResponse;
 import com.pavan.EmployeeCrud.entity.Employee;
 import com.pavan.EmployeeCrud.service.EmployeeService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,27 +22,32 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public EmployeeResponse createEmployee( @Valid @RequestBody EmployeeRequest request){
-        return service.insertEmployee(request);
+    public ResponseEntity<EmployeeResponse> createEmployee(@Valid @RequestBody EmployeeRequest request){
+        EmployeeResponse response = service.insertEmployee(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/{id}")
-    public Employee getEmployee(@PathVariable Integer id){
-        return service.getEmployee(id);
+    public ResponseEntity<EmployeeResponse> getEmployee(@PathVariable Integer id){
+        EmployeeResponse employee= service.getEmployee(id);
+        return ResponseEntity.ok(employee);
     }
 
     @PutMapping("/{id}")
-    public Employee updateEmployee(@RequestBody Employee employee,@PathVariable Integer id){
-        return service.updateEmployee(employee,id);
+    public ResponseEntity<EmployeeResponse> updateEmployee(@RequestBody EmployeeRequest employee,@PathVariable Integer id){
+        EmployeeResponse emp = service.updateEmployee(employee,id);
+        return ResponseEntity.ok(emp);
     }
 
     @GetMapping
-    public List<Employee> getAllEmployees(){
-        return service.getAllEmployees();
+    public ResponseEntity<List<EmployeeResponse> > getAllEmployees(){
+        List<EmployeeResponse> employees=  service.getAllEmployees();
+        return ResponseEntity.ok(employees);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteEmployee(@PathVariable Integer id){
+    public ResponseEntity<Void> deleteEmployee(@PathVariable Integer id){
          service.deleteEmployee(id);
+         return ResponseEntity.noContent().build();
     }
 }
