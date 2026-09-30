@@ -2,7 +2,6 @@ package com.pavan.EmployeeCrud.controller;
 
 import com.pavan.EmployeeCrud.dto.EmployeeRequest;
 import com.pavan.EmployeeCrud.dto.EmployeeResponse;
-import com.pavan.EmployeeCrud.entity.Employee;
 import com.pavan.EmployeeCrud.service.EmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -13,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/employees")
+@CrossOrigin(origins = "http://localhost:5173")
 public class EmployeeController {
 
     private final EmployeeService service;
@@ -42,7 +42,7 @@ public class EmployeeController {
     @GetMapping
     public ResponseEntity<List<EmployeeResponse> > getAllEmployees(){
         List<EmployeeResponse> employees=  service.getAllEmployees();
-        return ResponseEntity.ok(employees);
+        return ResponseEntity.status(HttpStatus.OK).body(employees);
     }
 
     @DeleteMapping("/{id}")
