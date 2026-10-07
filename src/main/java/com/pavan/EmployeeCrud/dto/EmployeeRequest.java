@@ -16,8 +16,10 @@ public class EmployeeRequest {
     @Email(message = "Email is invalid")
     @NotBlank(message = "Email is required")
     private String email;
-    @NotBlank(message = "Department is required")
-    private String department;
+    @NotNull(message = "Department is required")
+    private Integer departmentId;
+    @NotBlank(message = "Designation is required")
+    private String designation;
     @NotNull(message = "Salary is required")
     @DecimalMin(value = "0.0",inclusive = false,message = "Salary must be greater than 0")
     @Positive(message = "Salary should be greater than 0")

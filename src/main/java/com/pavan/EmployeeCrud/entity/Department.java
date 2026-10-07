@@ -5,22 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "employee_table")
-public class Employee {
+@Table(name = "department")
+public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false, unique = true)
     private String name;
-    private String email;
-    @ManyToOne
-    @JoinColumn(name = "department_id",nullable = false)
-    private Department department;
-    private String designation;
-    private BigDecimal salary;
 }
+

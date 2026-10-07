@@ -13,6 +13,7 @@ public class EmployeeResponse {
     private Integer id;
     private String name;
     private String email;
-    private String department;
+    private DepartmentResponse department;
+    private String designation;
     private BigDecimal salary;
 }
