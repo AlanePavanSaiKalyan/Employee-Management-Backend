@@ -7,9 +7,10 @@ import com.pavan.EmployeeCrud.entity.EmployeeEducation;
 import com.pavan.EmployeeCrud.exception.EmployeeNotFoundException;
 import com.pavan.EmployeeCrud.repository.EducationRepo;
 import com.pavan.EmployeeCrud.repository.EmployeeRepo;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class EducationServiceImpl implements EducationService{
     private final EmployeeRepo employeeRepo;
     private final EducationRepo educationRepo;
